@@ -1,5 +1,0 @@
-{
-    "gmx_dir" : "build/bin",
-    "setting_dir" : "exp/settings/noLJ_pre_surface0_nstep1",
-    "nb" : "cpu"
-}

@@ -1,0 +1,20 @@
+add_library(zeta_fmm INTERFACE)
+
+file(GLOB ZETA_SOURCES
+    zeta_fmm_solver.cpp
+)
+
+target_include_directories(zeta_fmm INTERFACE
+                           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+
+target_link_libraries(zeta_fmm INTERFACE
+                      legacy_api
+                      gpu_utils
+                      math
+                      )
+
+
+
+target_link_libraries(mdtypes INTERFACE utility)
+
+set(LIBGROMACS_SOURCES ${LIBGROMACS_SOURCES} ${ZETA_SOURCES} PARENT_SCOPE)

@@ -123,7 +123,8 @@ add_subdirectory(trajectoryanalysis)
 add_subdirectory(energyanalysis)
 add_subdirectory(tools)
 
-add_subdirectory(coulomb_solvers/zetafmm)
+add_subdirectory(coulomb_solvers)
+add_subdirectory(zeta_fmm)
 
 get_property(PROPERTY_SOURCES GLOBAL PROPERTY GMX_LIBGROMACS_SOURCES)
 list(APPEND LIBGROMACS_SOURCES ${GMXLIB_SOURCES} ${MDLIB_SOURCES} ${PROPERTY_SOURCES})
@@ -421,6 +422,8 @@ target_link_libraries(libgromacs PRIVATE
                       $<BUILD_INTERFACE:trajectory>
                       $<BUILD_INTERFACE:trajectoryanalysis>
                       $<BUILD_INTERFACE:utility>
+                      $<BUILD_INTERFACE:coulomb_solvers>
+                      $<BUILD_INTERFACE:zeta_fmm>
     )
 if (GMX_OPENMP)
     target_link_libraries(libgromacs PUBLIC OpenMP::OpenMP_CXX)

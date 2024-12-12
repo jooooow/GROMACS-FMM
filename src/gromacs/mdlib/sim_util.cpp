@@ -122,6 +122,7 @@
 #include "gromacs/utility/strconvert.h"
 #include "gromacs/utility/stringutil.h"
 #include "gromacs/utility/sysinfo.h"
+#include "gromacs/coulomb_solvers/solver.h"
 
 #include "gpuforcereduction.h"
 
@@ -2070,6 +2071,9 @@ void do_force(FILE*                               fplog,
 
     if (stepWork.computeSlowForces)
     {
+        coulomb_solver::SolverExecutor solver_executor;
+        solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA);
+        solver_executor.execute();
         longRangeNonbondeds->calculate(fr->pmedata,
                                        cr,
                                        x.unpaddedConstArrayRef(),
