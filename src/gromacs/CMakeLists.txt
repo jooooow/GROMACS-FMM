@@ -123,6 +123,8 @@ add_subdirectory(trajectoryanalysis)
 add_subdirectory(energyanalysis)
 add_subdirectory(tools)
 
+add_subdirectory(coulomb_solvers/zetafmm)
+
 get_property(PROPERTY_SOURCES GLOBAL PROPERTY GMX_LIBGROMACS_SOURCES)
 list(APPEND LIBGROMACS_SOURCES ${GMXLIB_SOURCES} ${MDLIB_SOURCES} ${PROPERTY_SOURCES})
 
