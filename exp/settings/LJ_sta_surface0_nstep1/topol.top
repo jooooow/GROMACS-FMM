@@ -1,0 +1,10 @@
+#include "oplsaa.ff/forcefield.itp"
+
+
+#include "spce_noexcl.itp"
+
+[ system ]
+Water   
+
+[ molecules ]
+SOL    8000
