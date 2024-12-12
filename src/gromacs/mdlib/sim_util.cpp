@@ -2072,7 +2072,7 @@ void do_force(FILE*                               fplog,
     if (stepWork.computeSlowForces)
     {
         coulomb_solver::SolverExecutor solver_executor;
-        solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA);
+        solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::RT);
         solver_executor.execute();
         longRangeNonbondeds->calculate(fr->pmedata,
                                        cr,

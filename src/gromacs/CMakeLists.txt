@@ -125,6 +125,7 @@ add_subdirectory(tools)
 
 add_subdirectory(coulomb_solvers)
 add_subdirectory(zeta_fmm)
+add_subdirectory(rtfmm)
 
 get_property(PROPERTY_SOURCES GLOBAL PROPERTY GMX_LIBGROMACS_SOURCES)
 list(APPEND LIBGROMACS_SOURCES ${GMXLIB_SOURCES} ${MDLIB_SOURCES} ${PROPERTY_SOURCES})
@@ -424,6 +425,7 @@ target_link_libraries(libgromacs PRIVATE
                       $<BUILD_INTERFACE:utility>
                       $<BUILD_INTERFACE:coulomb_solvers>
                       $<BUILD_INTERFACE:zeta_fmm>
+                      $<BUILD_INTERFACE:rtfmm>
     )
 if (GMX_OPENMP)
     target_link_libraries(libgromacs PUBLIC OpenMP::OpenMP_CXX)
