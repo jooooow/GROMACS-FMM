@@ -1,4 +1,5 @@
 #include "rtfmm_solver.h"
+#include "type.h"
 
 namespace rtfmm
 {
@@ -9,6 +10,7 @@ rtFmmSolver::rtFmmSolver()
 void rtFmmSolver::execute()
 {
     std::cout<<"rtFmmSolver::execute()"<<std::endl;
+    test();
 }
 }
 

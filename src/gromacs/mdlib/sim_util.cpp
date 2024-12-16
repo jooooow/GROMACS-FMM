@@ -2072,7 +2072,7 @@ void do_force(FILE*                               fplog,
     if (stepWork.computeSlowForces)
     {
         coulomb_solver::SolverExecutor solver_executor;
-        solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::RT);
+        solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA);
         solver_executor.execute();
         longRangeNonbondeds->calculate(fr->pmedata,
                                        cr,
@@ -2538,6 +2538,13 @@ void do_force(FILE*                               fplog,
                              forceView->forceMtsCombined(),
                              inputrec.mtsLevels[1].stepFactor);
         }
+
+        const gmx::ArrayRef<gmx::RVec> fs = forceOutCombined.forceWithShiftForces().force();
+        for(int i = 0; i < 3; i++)
+        {
+            printf("[%.6f, %.6f, %.6f]\n", fs[i][0],fs[i][1],fs[i][2]);
+        }
+
     }
 
     if (stepWork.computeEnergy)
