@@ -42,6 +42,7 @@
 #include "gromacs/mdtypes/md_enums.h"
 #include "gromacs/utility/arrayref.h"
 #include "gromacs/utility/enumerationhelpers.h"
+#include "gromacs/coulomb_solvers/solver.h"
 
 class DDBalanceRegionHandler;
 struct gmx_edsam;
@@ -130,7 +131,8 @@ void do_force(FILE*                               log,
               double                              t,
               gmx_edsam*                          ed,
               CpuPpLongRangeNonbondeds*           longRangeNonbondeds,
-              const DDBalanceRegionHandler&       ddBalanceRegionHandler);
+              const DDBalanceRegionHandler&       ddBalanceRegionHandler,
+              coulomb_solver::SolverExecutor* solver_executer = nullptr);
 
 /* Communicate coordinates (if parallel).
  * Do neighbor searching (if necessary).

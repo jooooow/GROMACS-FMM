@@ -8,7 +8,7 @@ namespace zeta_fmm
 class ZetaFmmSolver : public coulomb_solver::BaseSolver
 {
 public:
-    ZetaFmmSolver();
+    ZetaFmmSolver(FILE* f, const t_mdatoms& md);
     void execute();
 };
 }

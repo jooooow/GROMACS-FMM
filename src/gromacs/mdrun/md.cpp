@@ -847,6 +847,10 @@ void gmx::LegacySimulator::do_md()
         logInitialMultisimStatus(ms_, cr_, mdLog_, simulationsShareState, ir->nsteps, ir->init_step);
     }
 
+    std::cout<<"SolverExecutor from md.cpp"<<std::endl;
+    coulomb_solver::SolverExecutor solver_executor;
+    solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA, fpLog_, *md);
+
     bool usedMdGpuGraphLastStep = false;
     /* and stop now if we should */
     bLastStep = (bLastStep || (ir->nsteps >= 0 && step_rel > ir->nsteps));
@@ -1274,7 +1278,8 @@ void gmx::LegacySimulator::do_md()
                          t,
                          ed ? ed->getLegacyED() : nullptr,
                          fr_->longRangeNonbondeds.get(),
-                         ddBalanceRegionHandler);
+                         ddBalanceRegionHandler,
+                         &solver_executor);
             }
 
             // VV integrators do not need the following velocity half step

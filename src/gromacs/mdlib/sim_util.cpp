@@ -122,7 +122,6 @@
 #include "gromacs/utility/strconvert.h"
 #include "gromacs/utility/stringutil.h"
 #include "gromacs/utility/sysinfo.h"
-#include "gromacs/coulomb_solvers/solver.h"
 
 #include "gpuforcereduction.h"
 
@@ -1477,7 +1476,8 @@ void do_force(FILE*                               fplog,
               double                              t,
               gmx_edsam*                          ed,
               CpuPpLongRangeNonbondeds*           longRangeNonbondeds,
-              const DDBalanceRegionHandler&       ddBalanceRegionHandler)
+              const DDBalanceRegionHandler&       ddBalanceRegionHandler,
+              coulomb_solver::SolverExecutor* solver_executer)
 {
     auto force = forceView->forceWithPadding();
     GMX_ASSERT(force.unpaddedArrayRef().ssize() >= fr->natoms_force_constr,
@@ -2071,9 +2071,7 @@ void do_force(FILE*                               fplog,
 
     if (stepWork.computeSlowForces)
     {
-        coulomb_solver::SolverExecutor solver_executor;
-        solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA);
-        solver_executor.execute();
+        solver_executer->execute();
         longRangeNonbondeds->calculate(fr->pmedata,
                                        cr,
                                        x.unpaddedConstArrayRef(),

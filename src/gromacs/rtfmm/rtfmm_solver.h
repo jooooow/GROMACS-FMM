@@ -8,7 +8,7 @@ namespace rtfmm
 class rtFmmSolver : public coulomb_solver::BaseSolver
 {
 public:
-    rtFmmSolver();
+    rtFmmSolver(FILE* f, const t_mdatoms& md);
     void execute();
 };
 }
