@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "gromacs/coulomb_solvers/basesolver.h"
+#include "body.h"
 
 namespace rtfmm
 {
@@ -18,6 +19,8 @@ public:
 
     coulomb_solver::Energy get_energy() override;
     
+private:
+    Bodies3 bs;
 };
 }
 

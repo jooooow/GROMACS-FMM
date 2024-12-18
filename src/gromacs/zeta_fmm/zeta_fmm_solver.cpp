@@ -38,7 +38,7 @@ void ZetaFmmSolver::execute(gmx::ArrayRef<const gmx::RVec> coord, const matrix b
     cycle = box[XX][XX];
     box_r = cycle / 2;
     center = zeta_fmm::vec3r(box[XX][XX] / 2, box[YY][YY] / 2, box[ZZ][ZZ] / 2);
-    if(verbose)
+    //if(verbose)
     {
         printf("[verbose] cycle = %.8f, box_r = %.8f, center = [%.8f, %.8f, %.8f]\n", cycle, box_r, center[0], center[1], center[2]);
     }

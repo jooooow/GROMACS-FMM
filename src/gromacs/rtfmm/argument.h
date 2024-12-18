@@ -13,7 +13,7 @@ class Argument
 public:
     Argument() = default;
     Argument(int argc, char* argv[]);
-    void show(std::string res_filepath);
+    void show(std::string res_filepath = "");
 
 public:
     int override_gtest_setting;

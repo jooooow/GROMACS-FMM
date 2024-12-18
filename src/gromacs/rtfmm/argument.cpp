@@ -37,7 +37,7 @@ rtfmm::Argument::Argument(int argc, char* argv[])
     cmd.add<int>("body0_idx", 0, "index of body moved(for reg plot check)", false, -1);
     cmd.add<int>("check_body_idx", 0, "index of body check(for reg plot check)", false, 0);
     cmd.add<std::string>("reg_image0_type", 0, "type of fmm when reg=true,image=false", false, "c");
-    cmd.add<std::string>("res_filepath", 0, "path of result file", true, "");
+    cmd.add<std::string>("res_filepath", 0, "path of result file", false, "");
 
     cmd.parse_check(argc, argv);
 
@@ -99,6 +99,7 @@ void rtfmm::Argument::show(std::string res_filepath)
     args += rtfmm::format("\t%-20s = %d\n","override",override_gtest_setting);
     args += rtfmm::format("\t%-20s = %d\n","P",P);
     args += rtfmm::format("\t%-20s = %d\n","n",n);
+    args += rtfmm::format("\t%-20s = [%.8f,%.8f,%.8f]\n","x",x[0],x[1],x[2]);
     args += rtfmm::format("\t%-20s = %d\n","ncrit",ncrit);
     args += rtfmm::format("\t%-20s = %d\n","images",images);
     args += rtfmm::format("\t%-20s = %.4f\n","cycle",cycle);
@@ -126,7 +127,10 @@ void rtfmm::Argument::show(std::string res_filepath)
 
     std::cout << args << std::endl << std::endl;
 
-    std::ofstream outputfile(res_filepath);
-    outputfile << args << std::endl << std::endl;
-    outputfile.close();
+    if(res_filepath != "")
+    {
+        std::ofstream outputfile(res_filepath);
+        outputfile << args << std::endl << std::endl;
+        outputfile.close();
+    }
 }
