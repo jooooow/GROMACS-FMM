@@ -48,13 +48,37 @@ public:
         }
     }
 
-    void execute() 
+    void execute(gmx::ArrayRef<const gmx::RVec> coord, const matrix box, int verbose, int dummy) 
     {
         if (solver) 
         {
-            solver->execute();
+            solver->execute(coord, box, verbose, dummy);
         } 
         else 
+        {
+            std::cerr << "No solver set!" << std::endl;
+        }
+    }
+
+    void set_parameter(const t_mdatoms& md)
+    {
+        if (solver) 
+        {
+            solver->set_parameter(md);
+        } 
+        else 
+        {
+            std::cerr << "No solver set!" << std::endl;
+        }
+    }
+
+    coulomb_solver::Energy get_energy()
+    {
+        if (solver)
+        {
+            return solver->get_energy();
+        }
+        else
         {
             std::cerr << "No solver set!" << std::endl;
         }

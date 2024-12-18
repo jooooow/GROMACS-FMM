@@ -848,8 +848,8 @@ void gmx::LegacySimulator::do_md()
     }
 
     std::cout<<"SolverExecutor from md.cpp"<<std::endl;
-    coulomb_solver::SolverExecutor solver_executor;
-    solver_executor.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA, fpLog_, *md);
+    coulomb_solver::SolverExecutor solver_executer;
+    solver_executer.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA, fpLog_, *md);
 
     bool usedMdGpuGraphLastStep = false;
     /* and stop now if we should */
@@ -1249,6 +1249,7 @@ void gmx::LegacySimulator::do_md()
                  * This is parallellized as well, and does communication too.
                  * Check comments in sim_util.c
                  */
+                solver_executer.set_parameter(*md);
                 do_force(fpLog_,
                          cr_,
                          ms_,
@@ -1279,7 +1280,7 @@ void gmx::LegacySimulator::do_md()
                          ed ? ed->getLegacyED() : nullptr,
                          fr_->longRangeNonbondeds.get(),
                          ddBalanceRegionHandler,
-                         &solver_executor);
+                         &solver_executer);
             }
 
             // VV integrators do not need the following velocity half step
@@ -1927,6 +1928,9 @@ void gmx::LegacySimulator::do_md()
                 }
             }
             /* #########  END PREPARING EDR OUTPUT  ###########  */
+
+            coulomb_solver::Energy fmm_energy = solver_executer.get_energy();
+            std::cout<<fmm_energy<<std::endl;
         }
 
         /* Output stuff */

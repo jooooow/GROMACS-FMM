@@ -42,7 +42,7 @@
 #include "gromacs/mdtypes/md_enums.h"
 #include "gromacs/utility/arrayref.h"
 #include "gromacs/utility/enumerationhelpers.h"
-#include "gromacs/coulomb_solvers/solver.h"
+#include "gromacs/coulomb_solvers/executer.h"
 
 class DDBalanceRegionHandler;
 struct gmx_edsam;

@@ -2071,7 +2071,7 @@ void do_force(FILE*                               fplog,
 
     if (stepWork.computeSlowForces)
     {
-        solver_executer->execute();
+        solver_executer->execute(x.unpaddedConstArrayRef(), box, 0, 0);
         longRangeNonbondeds->calculate(fr->pmedata,
                                        cr,
                                        x.unpaddedConstArrayRef(),
