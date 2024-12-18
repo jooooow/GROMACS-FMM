@@ -847,9 +847,9 @@ void gmx::LegacySimulator::do_md()
         logInitialMultisimStatus(ms_, cr_, mdLog_, simulationsShareState, ir->nsteps, ir->init_step);
     }
 
-    std::cout<<"SolverExecutor from md.cpp"<<std::endl;
-    coulomb_solver::SolverExecutor solver_executer;
-    solver_executer.set_solver(coulomb_solver::SolverExecutor::SolverType::ZETA, fpLog_, *md);
+    std::cout<<"SolverExecuter from md.cpp"<<std::endl;
+    coulomb_solver::SolverExecuter solver_executer;
+    solver_executer.set_solver(coulomb_solver::SolverExecuter::SolverType::ZETA, fpLog_, *md);
 
     bool usedMdGpuGraphLastStep = false;
     /* and stop now if we should */

@@ -1477,7 +1477,7 @@ void do_force(FILE*                               fplog,
               gmx_edsam*                          ed,
               CpuPpLongRangeNonbondeds*           longRangeNonbondeds,
               const DDBalanceRegionHandler&       ddBalanceRegionHandler,
-              coulomb_solver::SolverExecutor* solver_executer)
+              coulomb_solver::SolverExecuter* solver_executer)
 {
     auto force = forceView->forceWithPadding();
     GMX_ASSERT(force.unpaddedArrayRef().ssize() >= fr->natoms_force_constr,

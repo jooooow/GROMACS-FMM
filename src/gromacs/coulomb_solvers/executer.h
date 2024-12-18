@@ -21,7 +21,7 @@ namespace rtfmm {
 namespace coulomb_solver
 {
 
-class SolverExecutor
+class SolverExecuter
 {
 private:
     std::shared_ptr<BaseSolver> solver;
@@ -82,6 +82,8 @@ public:
         {
             std::cerr << "No solver set!" << std::endl;
         }
+
+        return coulomb_solver::Energy();
     }
 };
 

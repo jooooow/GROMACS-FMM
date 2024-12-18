@@ -132,7 +132,7 @@ void do_force(FILE*                               log,
               gmx_edsam*                          ed,
               CpuPpLongRangeNonbondeds*           longRangeNonbondeds,
               const DDBalanceRegionHandler&       ddBalanceRegionHandler,
-              coulomb_solver::SolverExecutor* solver_executer = nullptr);
+              coulomb_solver::SolverExecuter* solver_executer = nullptr);
 
 /* Communicate coordinates (if parallel).
  * Do neighbor searching (if necessary).
