@@ -61,9 +61,25 @@ public:
         chargeB_ = md.chargeB;
     }
 
+    /**
+     * update internal bodies' potential and force by coord
+     */
     virtual void execute(gmx::ArrayRef<const gmx::RVec> coord, const matrix box, int verbose = 0, int dummy = 0) = 0;
 
+    /**
+     * add internal bodies' force to GROMACS's force
+     */
+    virtual void add_force(gmx::ForceWithVirial* forcewithvirial) = 0;
+
+    /**
+     * return energies
+     */
     virtual Energy get_energy() = 0;
+
+    /**
+     * compare internal force with GROMCAS's force
+     */
+    virtual void compare_forces(const gmx::ArrayRef<gmx::RVec>& fs) = 0;
 
 protected:
     FILE* fplog;

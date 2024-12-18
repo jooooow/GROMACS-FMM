@@ -2082,6 +2082,7 @@ void do_force(FILE*                               fplog,
                                        dipoleData.muStateAB,
                                        stepWork,
                                        ddBalanceRegionHandler);
+        //solver_executer->add_force(&forceOutMtsLevel1->forceWithVirial());
     }
 
     wallcycle_stop(wcycle, WallCycleCounter::Force);
@@ -2538,11 +2539,7 @@ void do_force(FILE*                               fplog,
         }
 
         const gmx::ArrayRef<gmx::RVec> fs = forceOutCombined.forceWithShiftForces().force();
-        for(int i = 0; i < 3; i++)
-        {
-            printf("[%.6f, %.6f, %.6f]\n", fs[i][0],fs[i][1],fs[i][2]);
-        }
-
+        solver_executer->compare_forces(fs);
     }
 
     if (stepWork.computeEnergy)

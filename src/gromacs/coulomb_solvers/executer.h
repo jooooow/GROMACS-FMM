@@ -72,6 +72,30 @@ public:
         }
     }
 
+    void add_force(gmx::ForceWithVirial* forcewithvirial)
+    {
+        if (solver)
+        {
+            solver->add_force(forcewithvirial);
+        }
+        else
+        {
+            std::cerr << "No solver set!" << std::endl;
+        }
+    }
+
+    void compare_forces(const gmx::ArrayRef<gmx::RVec>& fs)
+    {
+        if (solver)
+        {
+            solver->compare_forces(fs);
+        }
+        else
+        {
+            std::cerr << "No solver set!" << std::endl;
+        }
+    }
+
     coulomb_solver::Energy get_energy()
     {
         if (solver)

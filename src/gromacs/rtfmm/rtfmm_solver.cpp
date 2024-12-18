@@ -15,6 +15,16 @@ void rtFmmSolver::execute(gmx::ArrayRef<const gmx::RVec> coord, const matrix box
     test();
 }
 
+void rtFmmSolver::add_force(gmx::ForceWithVirial* forcewithvirial)
+{
+    std::cout<<"rtFmmSolver::add_force"<<std::endl;
+}
+
+void rtFmmSolver::compare_forces(const gmx::ArrayRef<gmx::RVec>& fs)
+{
+
+}
+
 coulomb_solver::Energy rtFmmSolver::get_energy()
 {
     coulomb_solver::Energy energy;
