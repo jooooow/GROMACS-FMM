@@ -12,7 +12,6 @@ void rtFmmSolver::execute(gmx::ArrayRef<const gmx::RVec> coord, const matrix box
 {
     std::cout<<"rtFmmSolver::execute(gmx::ArrayRef<const gmx::RVec> coord, const matrix box, int verbose, int dummy)"<<std::endl;
     std::cout<<"natoms="<<natoms<<std::endl;
-    test();
 }
 
 void rtFmmSolver::add_force(gmx::ForceWithVirial* forcewithvirial)
