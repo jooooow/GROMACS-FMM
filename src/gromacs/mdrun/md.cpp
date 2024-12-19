@@ -849,7 +849,7 @@ void gmx::LegacySimulator::do_md()
 
     std::cout<<"SolverExecuter from md.cpp"<<std::endl;
     coulomb_solver::SolverExecuter solver_executer;
-    solver_executer.set_solver(coulomb_solver::SolverExecuter::SolverType::RT, fpLog_, *md);
+    solver_executer.set_solver(coulomb_solver::SolverExecuter::SolverType::EWALD, fpLog_, *md);
 
     bool usedMdGpuGraphLastStep = false;
     /* and stop now if we should */

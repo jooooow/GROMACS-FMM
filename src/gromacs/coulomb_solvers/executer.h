@@ -4,6 +4,7 @@
 #include <iostream>
 #include "gromacs/zeta_fmm/zeta_fmm_solver.h"
 #include "gromacs/rtfmm/rtfmm_solver.h"
+#include "gromacs/rtfmm/ewald_solver.h"
 #include "gromacs/mdtypes/mdatom.h"
 #include "gromacs/math/vectypes.h"
 #include "gromacs/mdtypes/forceoutput.h"
@@ -45,6 +46,16 @@ public:
         {
             std::cout<<"RT"<<std::endl;
             solver = std::make_shared<rtfmm::rtFmmSolver>(f, md);
+        }
+        else if(solver_type == SolverType::EWALD)
+        {
+            std::cout<<"EWALD"<<std::endl;
+            solver = std::make_shared<rtfmm::EwaldSolverWrapper>(f, md);
+        }
+        else
+        {
+            std::cerr<<"invalid solver type !"<<static_cast<int>(solver_type)<<std::endl;
+            exit(0);
         }
     }
 

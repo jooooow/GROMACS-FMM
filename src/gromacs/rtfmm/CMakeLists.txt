@@ -12,6 +12,7 @@ file(GLOB RT_SOURCES
     ewald.cpp
     argument.cpp
     epkifmm.cpp
+    ewald_solver.cpp
 )
 
 find_package(BLAS REQUIRED)
